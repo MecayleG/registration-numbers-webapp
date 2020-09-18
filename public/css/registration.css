@@ -1,0 +1,72 @@
+body {
+    background-color: #80ff80;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Staatliches', cursive;
+    font-size: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+input {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #d9d9d9;
+}
+
+button:hover,
+button:focus {
+    background-color: #00ff00;
+}
+
+ul {
+    list-style: none;
+}
+
+.color {
+    border: 0.5px solid black;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    display: inline-block;
+}
+
+.red {
+    color: #cc0000;
+}
+
+select {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #d9d9d9;
+    margin-top: 1em;
+}
+
+select:hover,
+select:focus {
+    background-color: #00ff00;
+}
+
+span {
+    color: #00ff00;
+}
+
+input::placeholder {
+    font-size: 18px;
+}
