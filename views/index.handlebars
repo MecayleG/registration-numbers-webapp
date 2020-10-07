@@ -9,16 +9,18 @@
 	<div class="container">
 		<div class="input&btn">
 			<p class="eg">e.g. CA 12345 <span>|</span> CJ 987-888 <span>|</span> CL 812</p>
+   		 <p class="error"> {{messages.info}}<p>
 			<input id="regInput" class="regString" name="input" placeholder="enter registration here">
 			<button class="btn" id="displayBtn" type="submit">Add</button>
 		</div>
-		<div>
 			<select class="select">
+				{{#each town}}
 				<option value="default">Select Town</option>
-				<option value="CA" name="opt">Cape Town</option>
-				<option value="CL" name="opt">Stellenbosch</option>
-				<option value="CJ" name="opt">Paarl</option>
-				<option value="all" name="opt">Show All</option>
+				<option value={{1}} name="opt">Cape Town</option>
+				<option value={{3}} name="opt">Stellenbosch</option>
+				<option value={{2}} name="opt">Paarl</option>
+				<option value={{this.town}} name="opt">Show All</option>
+				{{/each}}
 			</select>
 		</div>
 		<ul>
@@ -32,5 +34,11 @@
 	</div>
 
 </body>
+<script>
+        setTimeout(function(){
+            document.querySelector(".error").innerHTML = "";
+        }, 4000);
+    </script>
+
 
 </html>

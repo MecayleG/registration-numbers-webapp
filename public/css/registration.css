@@ -47,8 +47,9 @@ ul {
     display: inline-block;
 }
 
-.red {
-    color: #cc0000;
+.error {
+    color: red;
+    font-weight: bold;
 }
 
 select {
