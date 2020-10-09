@@ -49,7 +49,10 @@ ul {
 
 .error {
     color: red;
-    font-weight: bold;
+}
+
+.msg {
+    color: #00ff00;
 }
 
 select {

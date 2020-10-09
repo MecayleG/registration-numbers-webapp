@@ -51,29 +51,36 @@ app.get("/", async function(req, res) {
 });
 app.post("/reg_numbers", async function(req, res) {
     let value = req.body.input
-        // let town = req.body.opt
-    let validate = await registrations.validate(value)
-    let add = await registrations.addToDb(value)
-    if (value === "") {
-        req.flash('info', 'enter a reg');
+    let upper = value.toUpperCase();
+    if (value !== "") {
+        if (/C[ALJ] \d{3,5}$/.test(upper) || /C[ALJ] \d+\s|-\d+$/.test(upper)) {
+            if (await registrations.ifRegExists(upper) === 0) {
+                await registrations.adding(upper)
+                req.flash('msg', 'success')
+            } else {
+                req.flash('info', 'reg already entered')
+            }
+        } else {
+            req.flash('info', 'enter a valid reg')
+        }
+    } else {
+        req.flash('info', 'enter a reg')
     }
-
-
-
     res.render("index", {
         reg: await registrations.allTheRegs()
     });
 });
 
 
-// app.get("/reg_numbers", function(req, res) {
-//     let town = req.body.opt
-//     let all = registrations.optionSelected(town)
+app.get("/reg_numbers", async function(req, res) {
+    let town = req.query.opt;
+    let all = await registrations.optionSelected(town)
 
-//     res.render("index", {
-//         reg: all
-//     });
-// });
+    res.render("index", {
+        reg: all
+    });
+
+});
 
 
 const PORT = process.env.PORT || 3003;

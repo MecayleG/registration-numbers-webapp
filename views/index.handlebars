@@ -10,18 +10,11 @@
 		<div class="input&btn">
 			<p class="eg">e.g. CA 12345 <span>|</span> CJ 987-888 <span>|</span> CL 812</p>
    		 <p class="error"> {{messages.info}}<p>
+		<p class="msg"> {{messages.msg}}<p>
+
 			<input id="regInput" class="regString" name="input" placeholder="enter registration here">
 			<button class="btn" id="displayBtn" type="submit">Add</button>
 		</div>
-			<select class="select">
-				{{#each town}}
-				<option value="default">Select Town</option>
-				<option value={{1}} name="opt">Cape Town</option>
-				<option value={{3}} name="opt">Stellenbosch</option>
-				<option value={{2}} name="opt">Paarl</option>
-				<option value={{this.town}} name="opt">Show All</option>
-				{{/each}}
-			</select>
 		</div>
 		<ul>
             {{#each reg}}
@@ -31,12 +24,24 @@
              {{/each}}
         </ul>
         </form>
+		<form action="/reg_numbers" method="GET">
+			<select class="select" name="opt">
+				<option value="default">Select Town</option>
+				<option value='1' name="Cape Town">Cape Town</option>
+				<option value='3' name="Stellenbosch">Stellenbosch</option>
+				<option value='2' name="Paarl">Paarl</option>
+				<option value='all' name="All">Show All</option>
+			</select>
+			<input type="submit">
+			</form>
 	</div>
 
 </body>
 <script>
         setTimeout(function(){
             document.querySelector(".error").innerHTML = "";
+			 document.querySelector(".msg").innerHTML = "";
+
         }, 4000);
     </script>
 
