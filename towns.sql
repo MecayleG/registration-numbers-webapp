@@ -13,4 +13,7 @@ create table reg_number(
     foreign key (towns_id) references towns(id)
 
 );
- 
+ insert into towns (town_name, code) values ('Cape Town', 'CA');
+  insert into towns (town_name, code) values ('Paarl', 'CL');
+ insert into towns (town_name, code) values ('Stellenbosch', 'CJ');
+
