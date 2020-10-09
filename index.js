@@ -58,13 +58,13 @@ app.post("/reg_numbers", async function(req, res) {
                 await registrations.adding(upper)
                 req.flash('msg', 'success')
             } else {
-                req.flash('info', 'reg already entered')
+                req.flash('info', 'registration number already entered')
             }
         } else {
-            req.flash('info', 'enter a valid reg')
+            req.flash('info', 'enter a valid registration number')
         }
     } else {
-        req.flash('info', 'enter a reg')
+        req.flash('info', 'enter a registration number')
     }
     res.render("index", {
         reg: await registrations.allTheRegs()
