@@ -1,7 +1,7 @@
 const assert = require('assert');
 
 const Registrations = require("../factory/registrations");
-const registration = require('../routes/registration');
+// const registration = require('../routes/registration');
 
 describe("The Registrations Number Webapp", function() {
     const pg = require("pg");
