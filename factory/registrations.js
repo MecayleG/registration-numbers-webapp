@@ -34,7 +34,7 @@ module.exports = function TheRegistrations(pool) {
             let allRegs = await pool.query('select reg from reg_number');
             return allRegs.rows
         } else {
-            const theId = await pool.query('select * from reg_number where towns_id = ($1)', [id])
+            const theId = await pool.query('select reg from reg_number where towns_id = ($1)', [id])
             return theId.rows
         }
     }

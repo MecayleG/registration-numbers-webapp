@@ -5,7 +5,8 @@ const exphbs = require('express-handlebars');
 
 const bodyParser = require('body-parser');
 
-const Registrations = require("./registrations");
+const Registrations = require("./factory/registrations");
+const routes = require("./routes/registration")
 const flash = require('express-flash');
 
 const session = require('express-session');
@@ -26,6 +27,7 @@ const pool = new Pool({
 });
 
 const registrations = Registrations(pool);
+const regRoute = routes(registrations);
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
@@ -43,44 +45,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.get("/", async function(req, res) {
-    res.render("index", {
-        reg: await registrations.allTheRegs()
-
-    });
-});
-app.post("/reg_numbers", async function(req, res) {
-    let value = req.body.input
-    let upper = value.toUpperCase();
-    if (value !== "") {
-        if (/C[ALJ] \d{3,5}$/.test(upper) || /C[ALJ] \d+\s|-\d+$/.test(upper)) {
-            if (await registrations.ifRegExists(upper) === 0) {
-                await registrations.adding(upper)
-                req.flash('msg', 'success')
-            } else {
-                req.flash('info', 'registration number already entered')
-            }
-        } else {
-            req.flash('info', 'enter a valid registration number')
-        }
-    } else {
-        req.flash('info', 'enter a registration number')
-    }
-    res.render("index", {
-        reg: await registrations.allTheRegs()
-    });
-});
-
-
-app.get("/reg_numbers", async function(req, res) {
-    let town = req.query.opt;
-    let all = await registrations.optionSelected(town)
-
-    res.render("index", {
-        reg: all
-    });
-
-});
+app.get("/", regRoute.showAll);
+app.post("/reg_numbers", regRoute.add);
+app.get("/reg_numbers", regRoute.filter);
 
 
 const PORT = process.env.PORT || 3003;
