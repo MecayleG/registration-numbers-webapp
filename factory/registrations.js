@@ -1,3 +1,4 @@
+// factory function
 module.exports = function TheRegistrations(pool) {
 
     async function adding(regEntered) {
